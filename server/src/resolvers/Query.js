@@ -26,6 +26,11 @@ const Query = {
     const id = getUserId(ctx)
     return ctx.db.query.user({ where: { id } }, info)
   },
+
+  recipes(parent, args, ctx, info) {
+    const id = getUserId(ctx)
+    return ctx.db.query.recipes({ where: { owner: { id } } }, info)
+  }
 }
 
 module.exports = { Query }
