@@ -1,0 +1,41 @@
+# import Post from "./generated/prisma.graphql"
+# import Recipe from "./generated/prisma.graphql"
+# import IngredientCreateManyInput from "./generated/prisma.graphql"
+
+type Query {
+  feed: [Post!]!
+  drafts: [Post!]!
+  post(id: ID!): Post
+  me: User
+  recipes: [Recipe!]
+}
+
+type Mutation {
+  signup(email: String!, password: String!, name: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+  createDraft(title: String!, text: String!): Post!
+  publish(id: ID!): Post!
+  deletePost(id: ID!): Post!
+  createRecipe (
+    name: String!,
+    servings: String,
+    instructions: String!,
+    ingredients: IngredientCreateManyInput
+  ): Recipe!
+}
+
+type Subscription {
+  feedSubscription: PostSubscriptionPayload!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  posts: [Post!]!
+}
