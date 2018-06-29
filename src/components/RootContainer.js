@@ -16,6 +16,7 @@ import SignupPage from './SignupPage'
 import PageNotFound from './PageNotFound'
 import LogoutPage from './LogoutPage'
 import Recipes from '../pages/Recipes'
+import Recipe from '../pages/Recipe'
 import { AUTH_TOKEN } from '../constant'
 import { isTokenExpired } from '../helper/jwtHelper'
 import { graphql } from 'react-apollo'
@@ -166,6 +167,7 @@ class RootContainer extends Component {
             path="/create"
             component={CreatePage}
           />
+          <ProtectedRoute path="/recipe/:id" component={Recipe} token={this.state.token} />
           <Route path="/post/:id" component={DetailPage} />
           <Route
             token={this.state.token}

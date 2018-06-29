@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { graphql } from 'react-apollo'
 import  { gql } from 'apollo-boost'
+import { Link } from 'react-router-dom'
 
 class Recipes extends Component {
 
@@ -18,7 +19,7 @@ class Recipes extends Component {
         <h1>Recipes</h1>
         {this.props.recipeQuery.recipes &&
           this.props.recipeQuery.recipes.map(recipe => (
-            <p key={recipe.id} >{recipe.id}</p>
+            <Link key={recipe.id} to={`recipe/${recipe.id}`} >{recipe.name}</Link>
           ))}
         {this.props.children}
       </Fragment>
@@ -29,7 +30,8 @@ class Recipes extends Component {
 const RECIPES_QUERY = gql`
   query RecipesQuery {
     recipes {
-      id
+      id,
+      name
     }
   }
 `

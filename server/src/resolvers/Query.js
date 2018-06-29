@@ -30,6 +30,12 @@ const Query = {
   recipes(parent, args, ctx, info) {
     const id = getUserId(ctx)
     return ctx.db.query.recipes({ where: { owner: { id } } }, info)
+  },
+
+  recipe(parent, args, ctx, info) {
+    const userId = getUserId(ctx)
+    const recipes = ctx.db.query.recipes({ where: { id: args.id, owner: { id: userId } } }, info);
+    return recipes
   }
 }
 
