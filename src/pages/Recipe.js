@@ -23,10 +23,15 @@ class Recipe extends Component {
       )
     }
 
+    const singleRecipe = recipe[0];
+    console.info(singleRecipe);
     return (
       <div>
-        <p>{recipe[0].id}</p>
-        <p>{recipe[0].name}</p>
+        <p>{singleRecipe.id}</p>
+        <p>{singleRecipe.name}</p>
+        {singleRecipe.ingredients.map(ingredient => {
+          return <p>{`${ingredient.quantity} - ${ingredient.description}`}</p>
+        })}
       </div>
     )
   }
@@ -36,7 +41,11 @@ const RECIPE_QUERY = gql`
   query RecipeQuery($id: ID!) {
     recipe(id: $id) {
       id,
-      name
+      name,
+      ingredients {
+        quantity,
+        description
+      }
     }
   }
 `
