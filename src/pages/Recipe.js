@@ -29,7 +29,7 @@ class Recipe extends Component {
         <p>{singleRecipe.id}</p>
         <p>{singleRecipe.name}</p>
         {singleRecipe.ingredients.map(ingredient => {
-          return <p>{`${ingredient.quantity} - ${ingredient.description}`}</p>
+          return <p key={ingredient.id}>{`${ingredient.quantity} - ${ingredient.description}`}</p>
         })}
       </div>
     )
@@ -42,6 +42,7 @@ const RECIPE_QUERY = gql`
       id,
       name,
       ingredients {
+        id,
         quantity,
         description
       }
