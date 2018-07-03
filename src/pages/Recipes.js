@@ -19,7 +19,7 @@ class Recipes extends Component {
         <h1>Recipes</h1>
         {this.props.recipeQuery.recipes &&
           this.props.recipeQuery.recipes.map(recipe => (
-            <Link key={recipe.id} to={`recipe/${recipe.id}`} >{recipe.name}</Link>
+            <p key={recipe.id}><Link to={`recipe/${recipe.id}`} >{recipe.name}</Link></p>
           ))}
         {this.props.children}
       </Fragment>

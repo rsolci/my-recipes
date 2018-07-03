@@ -24,7 +24,6 @@ class Recipe extends Component {
     }
 
     const singleRecipe = recipe[0];
-    console.info(singleRecipe);
     return (
       <div>
         <p>{singleRecipe.id}</p>

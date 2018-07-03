@@ -17,6 +17,7 @@ import PageNotFound from './PageNotFound'
 import LogoutPage from './LogoutPage'
 import Recipes from '../pages/Recipes'
 import Recipe from '../pages/Recipe'
+import EditRecipe from '../pages/EditRecipe'
 import { AUTH_TOKEN } from '../constant'
 import { isTokenExpired } from '../helper/jwtHelper'
 import { graphql } from 'react-apollo'
@@ -142,7 +143,7 @@ class RootContainer extends Component {
           this.props.data.me.email &&
           this.state.token && (
             <Link
-              to="/create"
+              to="/recipe/new"
               className="f6 link dim br1 ba ph3 pv2 fr mb2 dib black"
             >
               + Create Draft
@@ -164,8 +165,8 @@ class RootContainer extends Component {
           />
           <ProtectedRoute
             token={this.state.token}
-            path="/create"
-            component={CreatePage}
+            path="/recipe/new"
+            component={EditRecipe}
           />
           <ProtectedRoute path="/recipe/:id" component={Recipe} token={this.state.token} />
           <Route path="/post/:id" component={DetailPage} />
